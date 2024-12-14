@@ -17,8 +17,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -31,8 +30,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -732,7 +730,7 @@
   "sourceMap": "74:500:0:-:0;;;234:52;;;;;;;;;-1:-1:-1;262:5:0;:18;;-1:-1:-1;;;;;;262:18:0;270:10;262:18;;;74:500;;;;;;",
   "deployedSourceMap": "74:500:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;403:168;;;;;;:::i;:::-;;:::i;:::-;;124:36;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;99:20;;;:::i;:::-;;;;;;;:::i;292:105::-;;;;;;:::i;:::-;;:::i;403:168::-;214:5;;-1:-1:-1;;;;;214:5:0;200:10;:19;196:26;;;540:24:::1;::::0;518:47:::1;::::0;-1:-1:-1;;;518:47:0;;499:11;;-1:-1:-1;;;;;518:21:0;::::1;::::0;::::1;::::0;:47:::1;::::0;::::1;;;:::i;:::-;;;;;;;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;221:1;196:26:::0;403:168;:::o;124:36::-;;;;:::o;99:20::-;;;-1:-1:-1;;;;;99:20:0;;:::o;292:105::-;214:5;;-1:-1:-1;;;;;214:5:0;200:10;:19;196:26;;;355:24:::1;:36:::0;292:105::o;14:306:2:-;;126:2;114:9;105:7;101:23;97:32;94:2;;;147:6;139;132:22;94:2;178:23;;-1:-1:-1;;;;;230:31:2;;220:42;;210:2;;281:6;273;266:22;210:2;309:5;84:236;-1:-1:-1;;;84:236:2:o;325:190::-;;437:2;425:9;416:7;412:23;408:32;405:2;;;458:6;450;443:22;405:2;-1:-1:-1;486:23:2;;395:120;-1:-1:-1;395:120:2:o;520:203::-;-1:-1:-1;;;;;684:32:2;;;;666:51;;654:2;639:18;;621:102::o;728:177::-;874:25;;;862:2;847:18;;829:76::o",
   "source": "// SPDX-License-Identifier: GPL-3.0\r\n\r\npragma solidity >=0.7.0 <0.9.0;\r\n\r\ncontract Migrations {\r\n  address public owner;\r\n  uint public last_completed_migration;\r\n\r\n  modifier restricted() {\r\n    if (msg.sender == owner) _;\r\n  }\r\n\r\n  constructor() public {\r\n    owner = msg.sender;\r\n  }\r\n\r\n  function setCompleted(uint completed) public restricted {\r\n    last_completed_migration = completed;\r\n  }\r\n\r\n  function upgrade(address new_address) public restricted {\r\n    Migrations upgraded = Migrations(new_address);\r\n    upgraded.setCompleted(last_completed_migration);\r\n  }\r\n}",
-  "sourcePath": "D:\\Tugas Iqbal\\Unand\\Neo\\Project\\hackathon-2024\\the-suaraku-2\\contracts\\Migration.sol",
+  "sourcePath": "D:\\Tugas Iqbal\\Unand\\Neo\\Project\\hackathon-2024\\the-suaraku-backend\\contracts\\Migration.sol",
   "ast": {
     "absolutePath": "project:/contracts/Migration.sol",
     "exportedSymbols": {
@@ -1371,8 +1369,7 @@
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-12-14T15:42:54.382Z",
-  "networkType": "ethereum",
+  "updatedAt": "2024-12-14T19:42:50.547Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
