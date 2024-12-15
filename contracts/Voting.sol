@@ -19,9 +19,17 @@ contract Voting {
         uint voteCount; // number of accumulated votes
     }
 
+    struct VoteHistory {
+        address voterAddress; // address of the voter
+        uint proposal; // index of the voted proposal
+        uint timestamp; // time of the vote
+    }
+
     address public chairperson;
     mapping(address => Voter) public voters;
     Proposal[] public proposals;
+    mapping(address => VoteHistory[]) public voteHistories; // Mapping to store voting history
+    uint public totalVotes; // Counter for total votes
 
     /** 
      * @dev Create a new ballot to choose one of 'proposalNames'.
@@ -78,6 +86,14 @@ contract Voting {
         sender.vote = proposal;
 
         proposals[proposal].voteCount += sender.weight;
+        totalVotes += sender.weight; // Increment total votes
+
+        // Store the voting history
+        voteHistories[msg.sender].push(VoteHistory({
+            voterAddress: msg.sender,
+            proposal: proposal,
+            timestamp: block.timestamp // Store the current block timestamp
+        }));
     }
 
     function winningProposal() public view returns (uint winningProposal_) {
@@ -100,5 +116,27 @@ contract Voting {
 
     function hasRightToVote(address voter) public view returns (bool) {
         return voters[voter].weight > 0;
+    }
+
+    function hasVoted(address voter) public view returns (bool) {
+        return voters[voter].voted;
+    }
+
+    // Function to get voting history for a specific voter
+    function getVotingHistory(address voter) external view returns (VoteHistory[] memory) {
+        return voteHistories[voter];
+    }
+
+    // Function to get the percentage of votes for each proposal
+    function getVotePercentages() external view returns (uint[] memory) {
+        uint[] memory percentages = new uint[](proposals.length);
+        for (uint i = 0; i < proposals.length; i++) {
+            if (totalVotes > 0) {
+                percentages[i] = (proposals[i].voteCount * 100) / totalVotes; // Calculate percentage
+            } else {
+                percentages[i] = 0; // No votes cast
+            }
+        }
+        return percentages;
     }
 }

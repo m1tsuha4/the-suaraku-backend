@@ -70,6 +70,18 @@ module.exports = {
     hasRightToVote: async function (voterAddress) {
         const instance = await Voting.deployed();
         const hasRight = await instance.hasRightToVote(voterAddress);
-        return({ hasRight });
+        return hasRight; // Return the boolean value directly
+    },
+    
+    hasVoted: async function (voterAddress) {
+        const instance = await Voting.deployed();
+        const hasVoted = await instance.hasVoted(voterAddress);
+        return hasVoted; // Return the boolean value directly
+    },
+
+    totalVotes: async function() {
+        const instance = await Voting.deployed();
+        const totalVotes = await instance.totalVotes();
+        return({ totalVotes });
     }
 };

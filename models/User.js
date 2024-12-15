@@ -1,5 +1,6 @@
 const { DataTypes } = require ('sequelize');
 const sequelize = require ('../database/database.js');
+// const AccountEth = require ('./AccountEth.js');
 
 const User = sequelize.define('User', {
     user_id: {
@@ -26,5 +27,7 @@ const User = sequelize.define('User', {
         allowNull: false
     }
 });
+
+// User.hasOne(AccountEth, { foreignKey: 'user_id' });
 
 module.exports = User;
