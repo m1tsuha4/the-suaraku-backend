@@ -34,7 +34,7 @@ const { hasData } = require('jquery');
 // Middleware
 const upload = multer();
 app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); 
 
 // Start the server
 app.listen(port, () => {
@@ -292,11 +292,23 @@ app.get('/hasil-pemilihan', async (req, res) => {
         // votingHistory.forEach(vote => {
         //     votesCount[vote.nomor_urut] += 1; // Increment the vote count for the candidate
         // });
-        votingHistory = {
-            'address' : '0x123',
-            'nomor_urut' : 1,
-            'tanggal' : '2024-12-15',
-        }
+        votingHistory = [
+            {   
+                'address' : '0x8C2ce5FED33F2A368616dc1675cf509c82d65c46',
+                'nomor_urut' : 1,
+                'jam' : '11.20'
+            },
+            {
+                'address' : '0xB4C1ce927fB0a66B5f2d10bbd513De23FF63293F',
+                'nomor_urut' : 2,
+                'jam' : '11.10'
+            },
+            {
+                'address' : '0xe79d5b13b800bc5aBecDbA822a301Fa1e53cbAc5',
+                'nomor_urut' : 2,
+                'jam' : '11.00'
+            }
+        ]
 
         // Prepare response data
         const responseData = {
@@ -307,10 +319,7 @@ app.get('/hasil-pemilihan', async (req, res) => {
                 nama_gubernur: paslon.nama_gubernur,
                 nama_wakil_gubernur: paslon.nama_wakil_gubernur
             })),
-            persentase_suara: paslonList.map(paslon => {
-                const count = votesCount[paslon.nomor_urut] || 0;
-                return totalVotes > 0 ? (count / totalVotes) * 100 : 0; // Calculate percentage
-            }),
+            persentase_suara: [33,66],
             riwayat_suara: votingHistory
         };
 
